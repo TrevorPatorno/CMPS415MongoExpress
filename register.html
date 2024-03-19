@@ -13,28 +13,29 @@
     margin: 0;
   }
 
-  form {
+  .register-form {
     width: 300px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    text-align: center;
   }
 
-  form label,
-  form input {
+  .register-form label,
+  .register-form input {
     display: block;
     margin-bottom: 10px;
   }
 
-  form input[type="text"],
-  form input[type="password"] {
+  .register-form input[type="text"],
+  .register-form input[type="password"] {
     width: calc(100% - 20px);
     padding: 8px;
     border-radius: 3px;
     border: 1px solid #ccc;
   }
 
-  form input[type="submit"] {
+  .register-form input[type="submit"] {
     width: 100%;
     padding: 10px;
     border: none;
@@ -44,7 +45,7 @@
     cursor: pointer;
   }
 
-  form input[type="submit"]:hover {
+  .register-form input[type="submit"]:hover {
     background-color: #0056b3;
   }
 
@@ -54,15 +55,17 @@
 </style>
 </head>
 <body>
-  <h2>User Registration Form</h2>
-  <form action="submit_form.php" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required>
-  
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-        
-    <input type="submit" value="Register">
-  </form>
+  <div class="register-form">
+    <h2>User Registration Form</h2>
+    <form action="/register" method="post">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+      
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      
+      <input type="submit" value="Register">
+    </form>
+  </div>
 </body>
 </html>
