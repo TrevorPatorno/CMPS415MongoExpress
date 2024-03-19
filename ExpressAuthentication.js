@@ -18,7 +18,7 @@ app.use(cookieParser());
 
 // Default route: should go to Register Page
 app.get('/', function(req, res) {
-  res.sendFile(__placeholder + '/register.html');
+  res.sendFile(__dirname + '/register.html');
 });
 
 // Route for handling registration/how it works
@@ -50,7 +50,7 @@ app.post('/register', async function(req, res) {
 
 // Route for Login Page
 app.get('/login.html', function(req, res) {
-  res.sendFile(__placeholder + '/login.html');
+  res.sendFile(__dirname + '/login.html');
 });
 
 // Route for accessing database objects/items (including users)
