@@ -63,7 +63,7 @@ app.get('/api/mongo/:item', async function(req, res) {
     const db = mongoClient.db('Credientials');
     const dbCollection = db.collection('CredientialInfo');
 
-    const queryStr = { id: req.params.item };
+    const queryStr = { username: req.params.item };
     const user = await dbCollection.findOne(queryStr);
 
     if (user) {
