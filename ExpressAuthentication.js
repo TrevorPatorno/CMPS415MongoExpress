@@ -45,7 +45,8 @@ app.post('/register', async function(req, res) {
     res.status(500).send('Failed to register');
   } finally {
     await mongoClient.close;
-  });
+  }
+});
 
 // Route for Login Page
 app.get('/login.html', function(req, res) {
