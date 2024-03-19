@@ -24,7 +24,7 @@ app.get('/', function(req, res) {
 // Route for handling registration/how it works
 app.post('/register', async function(req, res) {
   // get id and password of user registering and connect to MongoDB
-  const { id, password } = req.body;
+  const { username, password } = req.body;
   const mongoClient = new MongoClient(uri);
 
   // Have to insert the user data into our MongoDB
@@ -36,8 +36,8 @@ app.post('/register', async function(req, res) {
     const db = mongoClient.db('Credientials');
     const dbCollection = db.collection('CredientialInfo');
     
-    await dbCollection.insertOne({ id, password });
-    console.log("Successfully registered user, with id: ", id);
+    await dbCollection.insertOne({ username, password });
+    console.log("Successfully registered user, with username: ", username);
 
     res.redirect('/login.html');
   } catch (err) {
