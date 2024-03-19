@@ -1,0 +1,20 @@
+{
+  "name": "CMPS415MongoExpress",
+  "version": "1.0.0",
+  "description": "Project using MongoDB, Express, and Cookies to handle authentication",
+  "main": "ExpressAuthenticator.js",
+  "repository": "https://github.com/TrevorPatorno/CMPS415MongoExpress",
+  "author": "TrevorPatorno",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node ExpressAuthenticator.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongodb": "^5.1.0"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
