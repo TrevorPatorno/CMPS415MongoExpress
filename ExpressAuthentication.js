@@ -76,7 +76,7 @@ app.post('/login', async function(req, res) {
       console.log("Cookie created and user logged in: ", username, " with cookie : ", newCookieVal);
   
       // if user is successfully logged in, redirect them to a welcome page or dashboard
-      res.sendFile(__dirname + '/welcome.html');
+      res.sendFile(__dirname + '/landingPage.html');
     } else {
       // if user doesn't exist and info is invalid, reroute to login
       res.send('Invalid login info. <a href="/login.html">Attempt Login Again</a>');
