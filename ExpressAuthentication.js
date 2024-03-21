@@ -129,6 +129,6 @@ app.get('/display-cookies', function(req, resp) {
   }
   // Linking back to welcome page so cookies can also be cleared if desired
   // Output of cookies is sent as well (since appended output)
-  cookieOutput += '<br> <a href="/LandingPage.html">Back to Landing Page </a>";
+  cookieOutput += '<br> <a href="/LandingPage.html">Back to Landing Page </a>';
   res.send(cookieOutput);
 });
