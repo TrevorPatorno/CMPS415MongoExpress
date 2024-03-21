@@ -20,7 +20,7 @@ app.use(cookieParser());
 app.get('/', function(req, res) {
   // checks for cookies, if one exists, go to Login Page. if not, go to registerAndLogin page
   if (req.cookies.Authentication_Cookie) {
-    res.redirect('/welcome.html');
+    res.redirect('/landingPage.html');
   } else {
     res.sendFile(__dirname + '/registerAndLogin.html');
   }
