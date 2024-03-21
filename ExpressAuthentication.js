@@ -116,7 +116,7 @@ app.get('/api/mongo/:item', async function(req, res) {
 });
 
 // Route to display all cookies that haven't expired
-app.get('/display-cookies', function(req, resp) {
+app.get('/display-cookies', function(req, res) {
   const allCookies = req.cookies;
   let cookieOutput = "";
 
@@ -141,7 +141,7 @@ app.get('/erase-cookies', function(req, resp) {
 });
 
 // Route for Registration Page
-app.get('/Register.html', function(req, res) {
+app.get('/register.html', function(req, res) {
   res.sendFile(__dirname + '/Register.html');
 });
 
