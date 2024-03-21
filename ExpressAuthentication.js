@@ -123,7 +123,7 @@ app.get('/display-cookies', function(req, res) {
   // iterates through all cookies and makes sure each cookie does pertain to allCookies (it should)
   // if a cookie does belong to allCookies, then the output with be appended with the cookie and its value
   for (const cookie in allCookies) {
-    if (allCookies.hadOwnProperty(cookie)) {
+    if (allCookies.hasOwnProperty(cookie)) {
       cookieOutput += `${cookie}: ${allCookies[cookie]} <br>`;
     }
   }
