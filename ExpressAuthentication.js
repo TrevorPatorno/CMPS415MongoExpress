@@ -21,11 +21,6 @@ app.get('/', function(req, res) {
   res.sendFile(__dirname + '/register.html');
 });
 
-// Route for Login Page
-app.get('/login.html', function(req, res) {
-  res.sendFile(__dirname + '/login.html');
-});
-
 // Route for handling registration/how it works
 app.post('/register', async function(req, res) {
   // get username and password of user registering and connect to MongoDB
@@ -131,4 +126,9 @@ app.get('/display-cookies', function(req, resp) {
   // Output of cookies is sent as well (since appended output)
   cookieOutput += '<br> <a href="/landingPage.html">Back to Landing Page </a>';
   res.send(cookieOutput);
+});
+
+// Route for Login Page
+app.get('/login.html', function(req, res) {
+  res.sendFile(__dirname + '/login.html');
 });
