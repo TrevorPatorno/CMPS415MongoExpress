@@ -155,7 +155,7 @@ app.get('/registerAndLogin.html', function(req, res) {
   res.sendFile(__dirname + '/registerAndLogin.html');
 });
 
-// Route for Welcome Page
-app.get('/welcome.html', function(req, res) {
+// Route for Landing Page
+app.get('/landingPage.html', function(req, res) {
   res.sendFile(__dirname + '/welcome.html');
 });
