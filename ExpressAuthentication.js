@@ -18,7 +18,12 @@ app.use(cookieParser());
 
 // Default route: should go to Register Page
 app.get('/', function(req, res) {
-  res.sendFile(__dirname + '/register.html');
+  // checks for cookies, if one exists, go to Login Page. if not, go to RegisterAndLogin page
+  if (req.cookies.Authentication_Cookie) {
+    res.redirect('/welcome.html');
+  } else {
+    res.sendFile(__dirname + '/RegisterAndLogin.html');
+  }
 });
 
 // Route for handling registration/how it works
@@ -67,7 +72,7 @@ app.post('/login', async function(req, resp) {
     // expiration date is set to 60000 ms or 1 minute, and log success to console
     if (user) {
       const newCookieVal = username + Date.now();
-      res.cookie('Authentication Cookie', newCookieVal, { maxAge: 60000 });
+      res.cookie('Authentication_Cookie', newCookieVal, { maxAge: 60000 });
       console.log("Cookie created and user logged in: ", username, " with cookie : ", newCookieVal);
   
       // if user is successfully logged in, redirect them to a welcome page or dashboard
@@ -126,6 +131,13 @@ app.get('/display-cookies', function(req, resp) {
   // Output of cookies is sent as well (since appended output)
   cookieOutput += '<br> <a href="/landingPage.html">Back to Landing Page </a>';
   res.send(cookieOutput);
+});
+
+// Route to erase all cookies
+app.get('/erase-cookies', function(req, resp) {
+  res.clearCookie('Authentication_Cookie');
+  res.send('Erasing Cookies was successfully. ');
+  res.send('<br> <a href="/"><input type="submit" value="Default Page"></input></a> <br> <a href="/display-cookies"><input type="submit" value="Display Cookies"></input></a>
 });
 
 // Route for Login Page
