@@ -18,11 +18,11 @@ app.use(cookieParser());
 
 // Default route: should go to Register Page
 app.get('/', function(req, res) {
-  // checks for cookies, if one exists, go to Login Page. if not, go to RegisterAndLogin page
+  // checks for cookies, if one exists, go to Login Page. if not, go to registerAndLogin page
   if (req.cookies.Authentication_Cookie) {
     res.redirect('/welcome.html');
   } else {
-    res.sendFile(__dirname + '/RegisterAndLogin.html');
+    res.sendFile(__dirname + '/registerAndLogin.html');
   }
 });
 
@@ -76,10 +76,10 @@ app.post('/login', async function(req, resp) {
       console.log("Cookie created and user logged in: ", username, " with cookie : ", newCookieVal);
   
       // if user is successfully logged in, redirect them to a welcome page or dashboard
-      res.sendFile(__dirname + '/Welcome.html');
+      res.sendFile(__dirname + '/welcome.html');
     } else {
       // if user doesn't exist and info is invalid, reroute to login
-      res.send('Invalid login info. <a href="/Login.html">Attempt Login Again</a>');
+      res.send('Invalid login info. <a href="/login.html">Attempt Login Again</a>');
     }
   } catch (err) {
     console.error("Login Error: ", err);
@@ -142,7 +142,7 @@ app.get('/erase-cookies', function(req, resp) {
 
 // Route for Registration Page
 app.get('/register.html', function(req, res) {
-  res.sendFile(__dirname + '/Register.html');
+  res.sendFile(__dirname + '/register.html');
 });
 
 // Route for Login Page
