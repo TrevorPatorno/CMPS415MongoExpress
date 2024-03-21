@@ -21,9 +21,14 @@ app.get('/', function(req, res) {
   res.sendFile(__dirname + '/register.html');
 });
 
+// Route for Login Page
+app.get('/login.html', function(req, res) {
+  res.sendFile(__dirname + '/login.html');
+});
+
 // Route for handling registration/how it works
 app.post('/register', async function(req, res) {
-  // get id and password of user registering and connect to MongoDB
+  // get username and password of user registering and connect to MongoDB
   const { username, password } = req.body;
   const mongoClient = new MongoClient(uri);
 
@@ -48,9 +53,40 @@ app.post('/register', async function(req, res) {
   }
 });
 
-// Route for Login Page
-app.get('/login.html', function(req, res) {
-  res.sendFile(__dirname + '/login.html');
+// Route for handling users logging in
+app.post('/login', async function(req, resp) {
+  // get username and password of user trying to login and connect to MongoDB
+  const { username, password } = req.body;
+  const mongoClient = new MongoClient(uri);
+
+  try {
+    await mongoClient.connect();
+
+    const db = mongoClient.db('Credientials');
+    const dbCollection = db.collection('CredientialInfo');
+
+    // try to find the user with the specified username and password from MongoDB
+    const user = await dbCollection.findOne({ username, password });
+
+    // if user exists and info is correct, give the user a unique auth cookie
+    // expiration date is set to 60000 ms or 1 minute, and log success to console
+    if (user) {
+      const newCookieVal = username + Date.now();
+      res.cookie('Authentication Cookie', newCookieVal, { maxAge: 60000 });
+      console.log("Cookie created and user logged in: ", username, " with cookie : ", newCookieVal);
+  
+      // if user is successfully logged in, redirect them to a welcome page or dashboard
+      res.sendFile(__dirname + '/Welcome.html');
+    } else {
+      // if user doesn't exist and info is invalid, reroute to login
+      res.send('Invalid login info. <a href="/Login.html">Attempt Login Again</a>'
+    }
+  } catch (err) {
+    console.error("Login Error: ", err);
+    res.status(500).send('Login Error');
+  } finally {
+    await mongoClient.close();
+  }
 });
 
 // Route for accessing database objects/items (including users)
@@ -77,4 +113,22 @@ app.get('/api/mongo/:item', async function(req, res) {
   } finally {
     await mongoClient.close();
   }
+});
+
+// Route to display all cookies that haven't expired
+app.get('/display-cookies', function(req, resp) {
+  const allCookies = req.cookies;
+  let cookieOutput = "";
+
+  // iterates through all cookies and makes sure each cookie does pertain to allCookies (it should)
+  // if a cookie does belong to allCookies, then the output with be appended with the cookie and its value
+  for (const cookie in allCookies) {
+    if (allCookies.hadOwnProperty(cookie)) {
+      cookieOutput += `${cookie}: ${allCookies[cookie]} <br>`;
+    }
+  }
+  // Linking back to welcome page so cookies can also be cleared if desired
+  // Output of cookies is sent as well (since appended output)
+  cookieOutput += '<br> <a href="/LandingPage.html">Back to Landing Page </a>";
+  res.send(cookieOutput);
 });
