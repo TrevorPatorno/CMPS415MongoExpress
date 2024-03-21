@@ -140,7 +140,22 @@ app.get('/erase-cookies', function(req, resp) {
   res.send('<br> <a href="/"><input type="submit" value="Default Page"></input></a> <br> <a href="/display-cookies"><input type="submit" value="Display Cookies"></input></a>
 });
 
+// Route for Registration Page
+app.get('/Register.html', function(req, res) {
+  res.sendFile(__dirname + '/Register.html');
+});
+
 // Route for Login Page
 app.get('/login.html', function(req, res) {
   res.sendFile(__dirname + '/login.html');
+});
+
+// Route for RegisterAndLogin Page
+app.get('/registerAndLogin.html', function(req, res) {
+  res.sendFile(__dirname + '/registerAndLogin.html');
+});
+
+// Route for Welcome Page
+app.get('/welcome.html', function(req, res) {
+  res.sendFile(__dirname + '/welcome.html');
 });
