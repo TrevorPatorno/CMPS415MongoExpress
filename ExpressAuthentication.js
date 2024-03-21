@@ -79,7 +79,7 @@ app.post('/login', async function(req, resp) {
       res.sendFile(__dirname + '/Welcome.html');
     } else {
       // if user doesn't exist and info is invalid, reroute to login
-      res.send('Invalid login info. <a href="/Login.html">Attempt Login Again</a>'
+      res.send('Invalid login info. <a href="/Login.html">Attempt Login Again</a>');
     }
   } catch (err) {
     console.error("Login Error: ", err);
