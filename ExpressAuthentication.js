@@ -79,7 +79,7 @@ app.post('/login', async function(req, res) {
   }
 });
 
-// Default route: should go to Register Page if no cookies
+// Default route: should go to Register/Login Page if no cookies
 app.get('/', function(req, res) {
   // checks for cookies, if one exists, go to landing Page. if not, go to registerAndLogin page
   if (Object.keys(req.cookies).length > 0) {
