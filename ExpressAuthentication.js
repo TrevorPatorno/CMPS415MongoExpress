@@ -114,7 +114,7 @@ app.get('/erase-cookies', function(req, res) {
   for (const cookie in allCookies) {
     res.clearCookie(cookie);
   }
-  res.send('Erasing Cookies was successfully. <br><br> <a href="/"><input type="submit" value="Default Page"></input></a> <br><br> <a href="/display-cookies"><input type="submit" value="Display Cookies"></input></a> <br><br> <a href="/erase-cookies"><input type="submit" value="Erase Cookies"></input></a>');
+  res.send('Erasing Cookies was successfully. <br><br> <a href="/"><input type="submit" value="Default Page"></input></a> <br><br> <a href="/display-cookies"><input type="submit" value="Display Cookies"></input></a>');
 });
 
 // Route for Registration Page
