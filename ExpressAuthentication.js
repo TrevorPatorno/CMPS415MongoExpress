@@ -101,7 +101,7 @@ app.get('/display-cookies', function(req, res) {
       cookieOutput += `${cookie}: ${allCookies[cookie]} <br>`;
     }
   }
-  // Linking back to welcome page so cookies can also be cleared if desired
+  // Linking back to landing page so cookies can also be cleared if desired
   // Output of cookies is sent as well (since appended output)
   cookieOutput += '<br> <a href="/landingPage.html"><input type="submit" value="Back to Landing Page"></input></a> <br><br> <a href="/erase-cookies"><input type="submit" value="Erase Cookies"></input></a>';
   res.send(cookieOutput);
@@ -115,9 +115,9 @@ app.get('/erase-cookies', function(req, res) {
     for (const cookie in allCookies) {
       res.clearCookie(cookie);
     }
-    res.send('Erasing Cookies was successfully. <br><br> <a href="/"><input type="submit" value="Default Page"></input></a> <br><br> <a href="/display-cookies"><input type="submit" value="Display Cookies"></input></a>');
+    res.send('Erasing Cookies was successfully. <br><br> <a href="/"><input type="submit" value="Back to Default Route"></input></a> <br><br> <a href="/display-cookies"><input type="submit" value="Display Cookies"></input></a>');
   } else {
-    res.send('Unable to erase cookies when no cookies exist. <br><br> <a href="/"><input type="submit" value="Default Page"></input></a> <br><br> <a href="/display-cookies"><input type="submit" value="Display Cookies"></input></a>');
+    res.send('Unable to erase cookies when no cookies exist. <br><br> <a href="/"><input type="submit" value="Back to Default Route"></input></a> <br><br> <a href="/display-cookies"><input type="submit" value="Display Cookies"></input></a>');
   }
 });
 
