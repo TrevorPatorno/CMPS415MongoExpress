@@ -69,7 +69,7 @@ app.post('/login', async function(req, res) {
       res.sendFile(__dirname + '/landingPage.html');
     } else {
       // if user doesn't exist and info is invalid, reroute to login
-      res.send('Invalid login info. <a href="/login.html">Attempt Login Again</a>');
+      res.send('Invalid login info. <br><br> <a href="/login.html"><input type="submit" value="/login">Attempt Login Again</input></a>');
     }
   } catch (err) {
     console.error("Login Error: ", err);
@@ -104,7 +104,7 @@ app.get('/display-cookies', function(req, res) {
   }
   // Linking back to welcome page so cookies can also be cleared if desired
   // Output of cookies is sent as well (since appended output)
-  cookieOutput += '<br> <a href="/landingPage.html"><input type="submit" value="Back to Landing Page"></input></a> <br> <a href="/erase-cookies"><input type="submit" value="Erase Cookies"></input></a>';
+  cookieOutput += '<br> <a href="/landingPage.html"><input type="submit" value="Back to Landing Page"></input></a> <br><br> <a href="/erase-cookies"><input type="submit" value="Erase Cookies"></input></a>';
   res.send(cookieOutput);
 });
 
@@ -114,7 +114,7 @@ app.get('/erase-cookies', function(req, res) {
   for (const cookie in allCookies) {
     res.clearCookie(cookie);
   }
-  res.send('Erasing Cookies was successfully. <br> <a href="/"><input type="submit" value="Default Page"></input></a> <br> <a href="/display-cookies"><input type="submit" value="Display Cookies"></input></a>');
+  res.send('Erasing Cookies was successfully. <br><br> <a href="/"><input type="submit" value="Default Page"></input></a> <br><br> <a href="/display-cookies"><input type="submit" value="Display Cookies"></input></a> <br><br> <a href="/erase-cookies"><input type="submit" value="Erase Cookies"></input></a>');
 });
 
 // Route for Registration Page
