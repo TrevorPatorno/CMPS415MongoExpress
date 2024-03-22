@@ -117,7 +117,7 @@ app.get('/erase-cookies', function(req, res) {
     }
     res.send('Erasing Cookies was successfully. <br><br> <a href="/"><input type="submit" value="Back to Default Route"></input></a> <br><br> <a href="/display-cookies"><input type="submit" value="Display Cookies"></input></a> <br><br> <a href="/erase-cookies"><input type="submit" value="Erase Cookies"></input></a>');
   } else {
-    res.send('Unable to erase cookies when no cookies exist. <br><br> <a href="/"><input type="submit" value="Back to Default Route"></input></a> <br><br> <a href="/display-cookies"><input type="submit" value="Display Cookies"></input></a>');
+    res.send('Unable to erase cookies when no cookies exist. <br><br> <a href="/"><input type="submit" value="Back to Default Route"></input></a> <br><br> <a href="/display-cookies"><input type="submit" value="Display Cookies"></input></a> <br><br> <a href="/erase-cookies"><input type="submit" value="Erase Cookies"></input></a>');
   }
 });
 
