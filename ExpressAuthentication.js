@@ -81,8 +81,8 @@ app.post('/login', async function(req, res) {
 
 // Default route: should go to Register Page
 app.get('/', function(req, res) {
-  // checks for cookies, if one exists, go to Login Page. if not, go to registerAndLogin page
-  if (req.cookies.Authentication_Cookie) {
+  // checks for cookies, if one exists, go to landing Page. if not, go to registerAndLogin page
+  if (req.cookies.username) {
     res.redirect('/landingPage.html');
   } else {
     res.sendFile(__dirname + '/registerAndLogin.html');
