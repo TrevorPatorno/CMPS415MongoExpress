@@ -104,14 +104,16 @@ app.get('/display-cookies', function(req, res) {
   }
   // Linking back to welcome page so cookies can also be cleared if desired
   // Output of cookies is sent as well (since appended output)
-  cookieOutput += '<br> <a href="/landingPage.html">Back to Landing Page </a>';
+  cookieOutput += '<br> <a href="/landingPage.html"><input type="submit" value="Back to Landing Page"></input></a> <br> <a href="/erase-cookies"><input type="submit" value="Erase Cookies"></input></a>';
   res.send(cookieOutput);
 });
 
 // Route to erase all cookies
 app.get('/erase-cookies', function(req, res) {
   const allCookies = req.cookies;
-  allCookies.forEach((cookie) => res.clearCookie(cookie));
+  for (const cookie in allCookies) {
+    res.clearCookie(cookie);
+  }
   res.send('Erasing Cookies was successfully. <br> <a href="/"><input type="submit" value="Default Page"></input></a> <br> <a href="/display-cookies"><input type="submit" value="Display Cookies"></input></a>');
 });
 
