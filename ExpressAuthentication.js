@@ -111,7 +111,7 @@ app.get('/display-cookies', function(req, res) {
 app.get('/erase-cookies', function(req, res) {
   const allCookies = req.cookies;
 
-  if (allCookies) {
+  if (Object.keys(allCookies).length > 0) {
     for (const cookie in allCookies) {
       res.clearCookie(cookie);
     }
