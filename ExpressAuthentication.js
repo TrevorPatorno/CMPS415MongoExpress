@@ -23,7 +23,7 @@ app.post('/register', async function(req, res) {
   const mongoClient = new MongoClient(uri);
 
   // Have to insert the user data into our MongoDB
-  // if successful, log it worked and redirect to login page
+  // if successful, log it worked and redirect to default route (registerAndLogin Page)
   // if not successful, handle in catch block
   try {
     await mongoClient.connect();
@@ -34,7 +34,7 @@ app.post('/register', async function(req, res) {
     await dbCollection.insertOne({ username, password });
     console.log("Successfully registered user, with username: ", username);
 
-    res.redirect('/login.html');
+    res.redirect('/registerAndLogin.html');
   } catch (err) {
     console.error("Failed to register: ", err);
     res.status(500).send('Failed to register');
