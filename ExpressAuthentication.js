@@ -61,9 +61,9 @@ app.post('/login', async function(req, res) {
     // if user exists and info is correct, give the user a unique auth cookie
     // expiration date is set to 60000 ms or 1 minute, and log success to console
     if (user) {
-      const newCookieVal = username + Date.now();
-      res.cookie('Authentication_Cookie', newCookieVal, { maxAge: 60000 });
-      console.log("Cookie created and user logged in: ", username, " with cookie : ", newCookieVal);
+      const randomCookieValue = Date.now();
+      res.cookie(username, randomCookieValue, { maxAge: 60000 });
+      console.log("Cookie created and user logged in: ", username, " with cookie value: ", randomCookieValue);
   
       // if user is successfully logged in, redirect them to a welcome page or dashboard
       res.sendFile(__dirname + '/landingPage.html');
