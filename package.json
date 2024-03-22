@@ -2,13 +2,13 @@
   "name": "CMPS415MongoExpress",
   "version": "1.0.0",
   "description": "Project using MongoDB, Express, and Cookies to handle authentication",
-  "main": "ExpressAuthenticator.js",
+  "main": "ExpressAuthentication.js",
   "repository": "https://github.com/TrevorPatorno/CMPS415MongoExpress",
   "author": "TrevorPatorno",
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "node ExpressAuthenticator.js"
+    "start": "node ExpressAuthentication.js"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
