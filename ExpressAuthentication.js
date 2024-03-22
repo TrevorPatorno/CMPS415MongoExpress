@@ -16,16 +16,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(cookieParser());
 
-// Default route: should go to Register Page
-app.get('/', function(req, res) {
-  // checks for cookies, if one exists, go to Login Page. if not, go to registerAndLogin page
-  if (req.cookies.Authentication_Cookie) {
-    res.redirect('/landingPage.html');
-  } else {
-    res.sendFile(__dirname + '/registerAndLogin.html');
-  }
-});
-
 // Route for handling registration/how it works
 app.post('/register', async function(req, res) {
   // get username and password of user registering and connect to MongoDB
@@ -89,34 +79,19 @@ app.post('/login', async function(req, res) {
   }
 });
 
-// Route for accessing database objects/items (including users)
-app.get('/api/mongo/:item', async function(req, res) {
-  const mongoClient = new MongoClient(uri);
-
-  try {
-    await mongoClient.connect();
-
-    const db = mongoClient.db('Credientials');
-    const dbCollection = db.collection('CredientialInfo');
-
-    const queryStr = { username: req.params.item };
-    const user = await dbCollection.findOne(queryStr);
-
-    if (user) {
-      res.send('Query Results: ' + JSON.stringify(user));
-    } else {
-      res.send('Failed to find database object');
-    }
-  } catch (err) {
-    console.error("Failed to access database: ", err);
-    res.status(500).send('Failed to access database');
-  } finally {
-    await mongoClient.close();
+// Default route: should go to Register Page
+app.get('/', function(req, res) {
+  // checks for cookies, if one exists, go to Login Page. if not, go to registerAndLogin page
+  if (req.cookies.Authentication_Cookie) {
+    res.redirect('/landingPage.html');
+  } else {
+    res.sendFile(__dirname + '/registerAndLogin.html');
   }
 });
 
 // Route to display all cookies that haven't expired
 app.get('/display-cookies', function(req, res) {
+  console.log(req.cookies);
   const allCookies = req.cookies;
   let cookieOutput = "";
 
@@ -135,7 +110,8 @@ app.get('/display-cookies', function(req, res) {
 
 // Route to erase all cookies
 app.get('/erase-cookies', function(req, res) {
-  res.clearCookie('Authentication_Cookie');
+  const allCookies = req.cookies;
+  allCookies.forEach((cookie) => res.clearCookie(cookie));
   res.send('Erasing Cookies was successfully. <br> <a href="/"><input type="submit" value="Default Page"></input></a> <br> <a href="/display-cookies"><input type="submit" value="Display Cookies"></input></a>');
 });
 
