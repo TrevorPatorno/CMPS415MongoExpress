@@ -68,7 +68,7 @@ app.post('/login', async function(req, res) {
       // if user is successfully logged in, redirect them to the landingPage
       res.sendFile(__dirname + '/landingPage.html');
     } else {
-      // if user doesn't exist and info is invalid, reroute to default route (registerAndLogin Page)
+      // if user doesn't exist and info is invalid, reroute to default route
       res.send('Invalid login info. <br><br> <a href="/"><input type="submit" value="Back To Default Route"></input></a>');
     }
   } catch (err) {
@@ -79,7 +79,7 @@ app.post('/login', async function(req, res) {
   }
 });
 
-// Default route: should go to Register Page
+// Default route: should go to Register Page if no cookies
 app.get('/', function(req, res) {
   // checks for cookies, if one exists, go to landing Page. if not, go to registerAndLogin page
   if (Object.keys(req.cookies).length > 0) {
