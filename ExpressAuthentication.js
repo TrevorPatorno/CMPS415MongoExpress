@@ -69,7 +69,7 @@ app.post('/login', async function(req, res) {
       res.sendFile(__dirname + '/landingPage.html');
     } else {
       // if user doesn't exist and info is invalid, reroute to default route (registerAndLogin Page)
-      res.send('Invalid login info. <br><br> <a href="/registerAndLogin.html"><input type="submit" value="Back To Default Route"></input></a>');
+      res.send('Invalid login info. <br><br> <a href="/"><input type="submit" value="Back To Default Route"></input></a>');
     }
   } catch (err) {
     console.error("Login Error: ", err);
